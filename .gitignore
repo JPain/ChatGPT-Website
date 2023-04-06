@@ -1,0 +1,18 @@
+# Python virtual environment
+server/venv/
+
+# Node.js modules
+client/node_modules/
+
+# Environment variables
+.env
+
+# Compiled Python bytecode
+*.pyc
+
+# Logs
+*.log
+logs/
+
+# VS Code
+.vscode/

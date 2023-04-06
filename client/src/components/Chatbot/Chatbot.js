@@ -16,10 +16,14 @@ function Chatbot() {
       body: JSON.stringify({ text: text })
     });
     const data = await response.json();
-    setHistory([...history, { text: text, sender: 'user' }]);
-    setHistory([...history, { text: data.message, sender: 'bot' }]);
+    setHistory([
+      ...history,
+      { text: text, sender: 'user' },
+      { text: data.message, sender: 'bot' }
+    ]);
     setText('');
   };
+  
 
   const handleChange = (event) => {
     setText(event.target.value);
