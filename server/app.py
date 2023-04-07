@@ -23,16 +23,21 @@ def list_models():
 def chat():
     data = request.get_json()
     text = data.get("text")
+    engine = data.get("engine", "davinci")
     history = data.get("history", [])
     prompt = f"The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n{history}\n\nHuman: {text}\nAI:"
 
     try:
         response = openai.Completion.create(
-            engine="davinci",
+            engine=engine,
             prompt=prompt,
             max_tokens=150,
             n=1,
             stop="\n",
+            temperature=0.9,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0.6,
         )
         message = response.choices[0].text.strip()
         return jsonify({"message": message})
