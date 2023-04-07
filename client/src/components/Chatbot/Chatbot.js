@@ -65,7 +65,7 @@ function Chatbot() {
             <option key={index} value={model}>{model}</option>
           ))}
         </select>
-        <button type="submit" disabled={loading}>Send</button>
+        <button type="submit" disabled={loading}>{loading ? 'Loading...' : 'Send'}</button>
       </form>
     </div>
   );
