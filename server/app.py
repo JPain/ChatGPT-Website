@@ -9,6 +9,16 @@ app = Flask(__name__)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+@app.route("/api/models", methods=["GET"])
+def list_models():
+    try:
+        models = openai.Model.list()
+        model_names = [model.id for model in models['data']]
+        return jsonify({"models": model_names})
+    except Exception as e:
+        print(e)
+        return jsonify({"message": "Something went wrong."}), 500
+
 @app.route("/api/chat", methods=["POST"])
 def chat():
     text = request.json.get("text")

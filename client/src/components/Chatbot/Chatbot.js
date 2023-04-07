@@ -4,10 +4,23 @@ import './Chatbot.css';
 function Chatbot() {
   const [text, setText] = useState('');
   const [history, setHistory] = useState([]);
+  const [modelList, setModelList] = useState([]);
+  const [loading, setLoading] = useState(false);
   const chatHistoryRef = useRef(null);
+
+  // Fetch list of models from backend API
+  useEffect(() => {
+    async function fetchModelList() {
+      const response = await fetch('/api/models');
+      const data = await response.json();
+      setModelList(data.models);
+    }
+    fetchModelList();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
@@ -22,6 +35,7 @@ function Chatbot() {
       { text: data.message, sender: 'bot' }
     ]);
     setText('');
+    setLoading(false);
   };
   
 
@@ -44,8 +58,14 @@ function Chatbot() {
         ))}
       </div>
       <form onSubmit={handleSubmit} className="chat-input">
-        <input type="text" value={text} onChange={handleChange} placeholder="Type your message here" />
-        <button type="submit">Send</button>
+        <input type="text" value={text} onChange={handleChange} placeholder="Type your message here" disabled={loading}/>
+        <select onChange={handleChange} disabled={loading}>
+          <option value="">Select Model</option>
+          {modelList.map((model, index) => (
+            <option key={index} value={model}>{model}</option>
+          ))}
+        </select>
+        <button type="submit" disabled={loading}>Send</button>
       </form>
     </div>
   );
