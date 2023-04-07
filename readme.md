@@ -1,6 +1,6 @@
-# Project Name
+# ChatGPT-Website
 
-[Short project description]
+This is a ChatGPT website and server (calling OpenAI) built entirely from ChatGPT code.
 
 ## Getting Started
 
