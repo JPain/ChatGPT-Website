@@ -42,6 +42,9 @@ function Chatbot() {
     setLoading(false);
   };  
   
+  const handleClearHistory = () => {
+    setHistory([]);
+  }
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -71,6 +74,7 @@ function Chatbot() {
         </select>
         <button type="submit" disabled={loading}>{loading ? 'Loading...' : 'Send'}</button>
       </form>
+      <button onClick={handleClearHistory} disabled={loading}>Clear History</button>
     </div>
   );
 }

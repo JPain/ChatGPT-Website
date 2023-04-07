@@ -38,6 +38,11 @@
   margin: 10px;
 }
 
+/* Set .clear-history to appear next to the input field */
+.clear-history {
+  margin-left: auto;
+}
+
 input {
   flex-grow: 1;
   padding: 10px;
