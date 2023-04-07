@@ -17,20 +17,27 @@ These instructions will get you a copy of the project up and running on your loc
 Clone the repository to your local machine.
 
 ```
-git clone [repository URL]
+git clone https://github.com/JPain/ChatGPT-Website.git
 ```
 
 Change to the project directory.
 
 ```
-cd [project directory]
+cd ChatGPT-Website
 ```
 
 Install the required packages for the Python server using conda.
 
 ```
+cd server
 conda env create -f environment.yml
 conda activate [environment name]
+```
+
+You might need to install a bunch of packages regardless of the conda env, so here they are
+
+```
+pip install openai Flask python-dotenv jsonify request
 ```
 
 Install the required packages for the React client using npm.
@@ -58,14 +65,6 @@ npm start
 
 Open your browser and go to http://localhost:3000 to see the app running.
 
-## Usage
-
-[Add usage instructions here]
-
-## Deployment
-
-[Add deployment instructions here]
-
 ## Built With
 
 - React - Frontend framework
@@ -73,7 +72,3 @@ Open your browser and go to http://localhost:3000 to see the app running.
 - Express.js - Backend web framework
 - Flask - Micro web framework for Python
 - OpenAI API - Language model API
-
-# License
-
-[Add license information here]
