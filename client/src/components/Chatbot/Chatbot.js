@@ -21,12 +21,16 @@ function Chatbot() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+    const body = {
+      text: text,
+      history: history // include conversation history in request body
+    };
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ text: text })
+      body: JSON.stringify(body)
     });
     const data = await response.json();
     setHistory([
@@ -36,7 +40,7 @@ function Chatbot() {
     ]);
     setText('');
     setLoading(false);
-  };
+  };  
   
 
   const handleChange = (event) => {

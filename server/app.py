@@ -21,8 +21,10 @@ def list_models():
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
-    text = request.json.get("text")
-    prompt = f"The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: {text}\nAI:"
+    data = request.get_json()
+    text = data.get("text")
+    history = data.get("history", [])
+    prompt = f"The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\n{history}\n\nHuman: {text}\nAI:"
 
     try:
         response = openai.Completion.create(
